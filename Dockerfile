@@ -30,6 +30,9 @@ RUN ./webui.sh -f can_run_as_root --exit --skip-torch-cuda-test
 ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
+RUN . /venv/bin/activate && \
+    pip install -U xformers --index-url https://download.pytorch.org/whl/cu121
+
 VOLUME /root/.cache
 
 CMD ["python3", "launch.py", "--listen"]
